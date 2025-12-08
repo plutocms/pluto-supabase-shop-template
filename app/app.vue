@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <PlutoRoot>
     <NuxtRouteAnnouncer />
 
-    <PlutoRoot>
-      <NuxtPage />
-    </PlutoRoot>
-  </div>
+    <NuxtPage />
+  </PlutoRoot>
 </template>
