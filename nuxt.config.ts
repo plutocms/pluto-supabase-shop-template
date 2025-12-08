@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   extends: [
     ["github:plutocms/pluto", { install: true }],
-    "github:plutocms/supabase",
+    ["github:plutocms/supabase", { install: true }],
   ],
 
   compatibilityDate: "2025-07-15",
