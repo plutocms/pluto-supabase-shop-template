@@ -10,16 +10,22 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxtjs/supabase": "^2.0.4",
-    "@plutocms/supabase-shop": "^0.0.1-alpha.2",
+    "@plutocms/supabase-shop": "^0.0.1-alpha.8",
     "nuxt": "^4.3.1",
-    "postgres": "^3.4.8",
-    "supabase": "^2.76.15",
-    "tailwindcss": "^4.2.1",
     "vue": "^3.5.29",
     "vue-router": "^5.0.3"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "@plutocms/pluto",
+    "@plutocms/supabase",
+    "@plutocms/supabase-shop",
+    "@plutocms/supabase-storage",
+    "@plutocms/ui",
+    "@plutocms/utils",
+    "unrs-resolver"
+  ]
 }
