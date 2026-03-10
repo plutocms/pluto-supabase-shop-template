@@ -1,5 +1,8 @@
 # Pluto Supabase Shop Template
 
+> [!WARNING]
+> This is a work in progress. Expect breaking changes until stable version.
+
 This is a simple e-commerce template built with Nuxt 3 + Pluto CMS. It provides a basic structure for an online store, including product listing, categories, and a shopping cart.
 
 ## Setup
