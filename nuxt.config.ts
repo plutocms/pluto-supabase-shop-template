@@ -6,6 +6,8 @@ export default defineNuxtConfig({
 
   devtools: { enabled: true },
 
+  css: ["~/assets/css/tailwind.css"],
+
   /*
    * Disable ESLint inherited from @plutocms/supabase-shop.
    * You can enable it by deleting this line.
