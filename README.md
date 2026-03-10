@@ -1,6 +1,6 @@
-# Nuxt Minimal Starter
+# Pluto Supabase Shop Template
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a simple e-commerce template built with Nuxt 3 + Pluto CMS. It provides a basic structure for an online store, including product listing, categories, and a shopping cart.
 
 ## Setup
 
@@ -72,4 +72,4 @@ yarn preview
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check out the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
