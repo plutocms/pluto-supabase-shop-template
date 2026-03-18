@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavbarAdmin />
+    <NavbarAdmin v-if="isLoggedIn" />
 
     <Navbar />
 
@@ -8,4 +8,6 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { isLoggedIn } = await useAuth();
+</script>

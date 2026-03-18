@@ -1,12 +1,15 @@
 <script setup lang="ts">
-const menuItems = [
-  { name: "Home", href: "/" },
-];
+const menuItems = [{ name: "Home", href: "/" }];
+
+const { isLoggedIn } = await useAuth();
 </script>
 
 <template>
   <nav
-    class="sticky top-10 z-40 border-b border-slate-200 bg-white/80 backdrop-blur supports-backdrop-filter:bg-white/70 dark:border-slate-800 dark:bg-slate-950/80 dark:supports-backdrop-filter:bg-slate-950/70"
+    :class="[
+      'sticky z-40 border-b border-slate-200 bg-white/80 backdrop-blur supports-backdrop-filter:bg-white/70 dark:border-slate-800 dark:bg-slate-950/80 dark:supports-backdrop-filter:bg-slate-950/70',
+      isLoggedIn ? 'top-10' : 'top-0',
+    ]"
   >
     <div
       class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
