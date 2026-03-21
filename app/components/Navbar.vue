@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const menuItems = [{ name: "Home", href: "/" }];
+const menuItems = [{ name: "Home", href: "/store" }];
 
 const { isLoggedIn } = await useAuth();
 </script>
