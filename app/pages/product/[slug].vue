@@ -7,11 +7,13 @@ useHead({
 
 const route = useRoute();
 
-const { product } = await useProduct(route.params.slug);
+const { product, error } = await useProduct(route.params.slug);
 </script>
 
 <template>
-  <UContainer class="min-h-screen py-12 bg-gray-50 dark:bg-gray-900">
+  <NotFoundProduct v-if="error" />
+
+  <UContainer v-else class="min-h-screen py-12 bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col md:flex-row gap-10">
       <div>
         <img
