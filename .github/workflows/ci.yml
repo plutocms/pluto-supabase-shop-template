@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   ci:
-    name: Typecheck & build
+    name: Lint, typecheck & build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,8 +24,18 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Typecheck
-        run: bun run typecheck
-
-      - name: Build
-        run: bun run build
+      # This template has never had a lint or typecheck script, so a
+      # hardcoded `bun run typecheck` here always failed. Probe instead, so
+      # adding a script later automatically enrolls it in CI.
+      - name: Run checks
+        run: |
+          set -euo pipefail
+          for script in lint typecheck test build; do
+            if node -e "process.exit(require('./package.json').scripts?.['$script'] ? 0 : 1)"; then
+              echo "::group::bun run $script"
+              bun run "$script"
+              echo "::endgroup::"
+            else
+              echo "no \"$script\" script in package.json — skipped"
+            fi
+          done
