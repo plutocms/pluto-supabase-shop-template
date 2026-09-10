@@ -1,12 +1,11 @@
-// Point PLUTO_SUPABASE_SHOP_PATH at a local checkout (e.g.
-// `../supabase-shop`) to test unpublished changes; unset, it resolves to
-// the published npm package.
-const supabaseShopLayer =
-  process.env.PLUTO_SUPABASE_SHOP_PATH || "@plutocms/supabase-shop";
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: [[supabaseShopLayer, { install: true }]],
+  extends: [
+    [
+      process.env.PLUTO_SUPABASE_SHOP_PATH || "@plutocms/supabase-shop",
+      { install: true },
+    ],
+  ],
 
   compatibilityDate: "2025-07-15",
 
