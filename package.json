@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@plutocms/supabase": "^0.7.1",
-    "@plutocms/supabase-shop": "^0.5.0",
+    "@plutocms/supabase-shop": "^0.6.0",
     "nuxt": "^4.5.2",
     "vue": "^3.5.41",
     "vue-router": "^5.2.0"
