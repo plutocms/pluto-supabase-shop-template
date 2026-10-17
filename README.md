@@ -23,6 +23,21 @@ yarn install
 bun install
 ```
 
+## Styling
+
+This app owns the only Tailwind build. Pluto layers do not register their own. Keep these
+three imports at the start of `app/assets/css/tailwind.css`, and add your own theme after
+them:
+
+```css
+@import 'tailwindcss';
+@import '@nuxt/ui';
+@import '#build/pluto.css';
+```
+
+`#build/pluto.css` brings in the CSS of every Pluto layer, including the admin theme. The
+admin keeps its own palette, so your site theme does not change it.
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
