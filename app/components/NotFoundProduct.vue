@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const { isLoggedIn } = await useAuth();
+// True while the core admin bar shows above the page (staff only).
+const { visible: adminBarVisible } = usePlutoAdminBar();
 </script>
 
 <template>
   <UContainer
     :class="[
-      isLoggedIn
+      adminBarVisible
         ? 'min-h-[calc(100vh-4rem-2.5rem)]'
         : 'min-h-[calc(100vh-4rem)]',
       'bg-gray-50 dark:bg-gray-900 flex items-center justify-center',
