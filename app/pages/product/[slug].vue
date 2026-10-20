@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { formatCurrency } from "#imports";
 
-useHead({
-  title: "Product Details",
-});
-
 const route = useRoute();
 
 const { product, error } = await useProduct(route.params.slug);
+
+useHead({
+  title: () =>
+    error.value ? "Product not found" : String(product.value?.name || "Product"),
+});
 </script>
 
 <template>
