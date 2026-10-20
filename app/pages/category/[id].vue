@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const route = useRoute();
+
+useHead({
+  title: "Category",
+});
 </script>
 
 <template>

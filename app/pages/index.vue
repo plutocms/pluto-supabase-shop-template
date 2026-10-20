@@ -2,6 +2,10 @@
 definePageMeta({
   layout: "welcome",
 });
+
+useHead({
+  title: "Welcome",
+});
 </script>
 
 <template>
