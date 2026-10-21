@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatCurrency } from "#imports";
+import { formatProductPrice } from "#imports";
 
 useHead({
   title: "Home",
@@ -74,7 +74,7 @@ const { categories } = await useProductCategory();
 
               <div>
                 <span class="text-lg font-bold">
-                  {{ formatCurrency(product.price, { currency: "BRL" }) }}
+                  {{ formatProductPrice(product.price) }}
                 </span>
               </div>
 

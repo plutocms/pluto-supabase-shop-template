@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatCurrency } from "#imports";
+import { formatProductPrice } from "#imports";
 
 const route = useRoute();
 
@@ -45,7 +45,7 @@ useHead({
           </p>
 
           <div class="text-3xl font-bold">
-            {{ formatCurrency(product?.price ?? 0) }}
+            {{ formatProductPrice(product?.price) }}
           </div>
 
           <UButton
