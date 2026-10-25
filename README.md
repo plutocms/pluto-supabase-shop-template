@@ -3,7 +3,9 @@
 > [!WARNING]
 > This is a work in progress. Expect breaking changes until stable version.
 
-This is a simple e-commerce template built with Nuxt 3 + Pluto CMS. It provides a basic structure for an online store, including product listing, categories, and a shopping cart.
+This is a simple e-commerce template built with Nuxt 4 + Pluto CMS. It provides a basic structure for an online store, including product listing and categories. The admin manages products and product media.
+
+The app extends only `@plutocms/supabase-shop`, as `[['@plutocms/supabase-shop', { install: true }]]`. That layer brings `@plutocms/supabase`, `@plutocms/pluto` and `@plutocms/ui`, so the `package.json` does not list them.
 
 ## Setup
 
