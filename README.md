@@ -38,6 +38,26 @@ them:
 `#build/pluto.css` brings in the CSS of every Pluto layer, including the admin theme. The
 admin keeps its own palette, so your site theme does not change it.
 
+## Team and email (optional)
+
+Admins invite the team under Settings > Users. It works with no setup: Supabase sends the
+emails. Supabase's built-in mailer sends only to members of your Supabase organization, and only
+a few emails per hour. To invite anyone, open Settings > Email in the admin and follow the steps.
+They use Resend, which has a free plan.
+
+These optional variables go in the environment of the running server, never in the build
+environment:
+
+```bash
+# The Supabase secret key. Invites then use Supabase's invite API, and
+# "Copy invite link" is available.
+NUXT_SUPABASE_SECRET_KEY=
+
+# Pluto mail with Resend (Settings > Email shows the exact lines).
+NUXT_PLUTO_MAIL_RESEND_API_KEY=
+NUXT_PLUTO_MAIL_FROM="Your Shop <hello@your-domain.com>"
+```
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
