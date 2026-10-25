@@ -1,11 +1,10 @@
+import { plutoLayer } from "@plutocms/pluto/layers";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: [
-    [
-      process.env.PLUTO_SUPABASE_SHOP_PATH || "@plutocms/supabase-shop",
-      { install: true },
-    ],
-  ],
+  // Set PLUTO_LOCAL_ROOT in .env to use local checkouts of the Pluto layers.
+  // See "Develop with local layers" in README.md.
+  extends: [plutoLayer("@plutocms/supabase-shop")],
 
   compatibilityDate: "2025-07-15",
 
