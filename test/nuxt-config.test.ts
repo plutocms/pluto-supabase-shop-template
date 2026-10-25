@@ -10,12 +10,14 @@ declare global {
 }
 
 beforeEach(() => {
+  delete process.env.PLUTO_LOCAL_ROOT;
   vi.stubGlobal("defineNuxtConfig", (config: unknown) => config);
 });
 
 afterEach(() => {
   vi.unstubAllGlobals();
   delete process.env.PLUTO_SUPABASE_SHOP_PATH;
+  delete process.env.PLUTO_LOCAL_ROOT;
   vi.resetModules();
 });
 

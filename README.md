@@ -3,7 +3,7 @@
 > [!WARNING]
 > This is a work in progress. Expect breaking changes until stable version.
 
-This is a simple e-commerce template built with Nuxt 4 + Pluto CMS. It provides a basic structure for an online store, including product listing and categories. The admin manages products and product media.
+This is a simple e-commerce template built with Nuxt 4 + Pluto. It provides a basic structure for an online store, including product listing and categories. The admin manages products and product media.
 
 The app extends only `@plutocms/supabase-shop`, as `[['@plutocms/supabase-shop', { install: true }]]`. That layer brings `@plutocms/supabase`, `@plutocms/pluto` and `@plutocms/ui`, so the `package.json` does not list them.
 
@@ -59,6 +59,20 @@ NUXT_SUPABASE_SECRET_KEY=
 NUXT_PLUTO_MAIL_RESEND_API_KEY=
 NUXT_PLUTO_MAIL_FROM="Your Shop <hello@your-domain.com>"
 ```
+
+## Develop with local layers
+
+To test unpublished changes, clone the Pluto layers side by side in one folder. Then set the
+folder in `.env`:
+
+```bash
+# The folder with your checkouts of the Pluto layers (utils, ui, pluto, ...).
+PLUTO_LOCAL_ROOT=..
+```
+
+The `plutoLayer` helper in `nuxt.config.ts` then uses a local checkout of every layer it finds
+in that folder. It uses the npm packages for the other layers. Set `PLUTO_USE_LOCAL=false` to
+turn local mode off. A production host has no `.env`, so it uses the npm packages.
 
 ## Development Server
 

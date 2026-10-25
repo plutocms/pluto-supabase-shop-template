@@ -37,7 +37,7 @@ const isFirstSetup = computed(
         icon="i-lucide-rocket"
         class="text-xs"
       >
-        Pluto CMS · Supabase · E-commerce
+        Pluto · Supabase · E-commerce
       </UBadge>
 
       <!-- Heading -->
@@ -51,7 +51,7 @@ const isFirstSetup = computed(
         <p
           class="text-lg dark:text-gray-400 light:text-gray-600 font-outfit max-w-xl mx-auto leading-relaxed"
         >
-          This is a starter template for building a storefront with Pluto CMS
+          This is a starter template for building a storefront with Pluto
           and Supabase. Customize it to fit your brand and launch your online
           store!
         </p>
