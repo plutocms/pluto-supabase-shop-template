@@ -3,7 +3,12 @@ import { formatProductPrice } from "#imports";
 
 const route = useRoute();
 
-const { product, error } = await useProduct(route.params.slug);
+// One product from the public API of Pluto, by slug.
+const { data, error } = await usePlutoPublicItem<PublicProduct>(
+  "product",
+  String(route.params.slug),
+);
+const product = computed(() => data.value?.data);
 
 useHead({
   title: () =>
@@ -18,7 +23,7 @@ useHead({
     <div class="flex flex-col md:flex-row gap-10">
       <div>
         <img
-          :src="product?.product_media[0]?.url"
+          :src="product?.media[0]?.url"
           :alt="product?.name"
           class="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200 dark:border-gray-700 shadow"
         />
@@ -28,11 +33,11 @@ useHead({
         <div class="flex flex-col gap-4 justify-center">
           <div class="flex items-center gap-x-2">
             <UBadge color="primary" size="lg">
-              {{ product?.product_category?.label }}
+              {{ product?.category?.label }}
             </UBadge>
 
             <UBadge color="primary" size="lg">
-              {{ product?.product_availability?.label }}
+              {{ product?.availability?.label }}
             </UBadge>
           </div>
 
