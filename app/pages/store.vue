@@ -5,9 +5,20 @@ useHead({
   title: "Home",
 });
 
-const { products } = await useProduct();
+// Products and categories from the public API of Pluto
+// (`/api/pluto/v1/content/product` and `/product-category`). A product has its
+// `media` (with URLs), `category` and `availability`.
+const { data: productList } = await usePlutoPublicList<PublicProduct>(
+  "product",
+  { limit: 5, sort: "-createdAt" },
+);
+const products = computed(() => productList.value?.data ?? []);
 
-const { categories } = await useProductCategory();
+const { data: categoryList } = await usePlutoPublicList<PublicProductTaxonomy>(
+  "product-category",
+  { limit: 100, sort: "label" },
+);
+const categories = computed(() => categoryList.value?.data ?? []);
 </script>
 
 <template>
@@ -42,7 +53,7 @@ const { categories } = await useProductCategory();
             class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3"
           >
             <article
-              v-for="product in products?.slice(0, 5)"
+              v-for="product in products"
               :key="product.id"
               class="group/product relative border border-gray-300/10 rounded-2xl p-2 sm:p-3 flex flex-col gap-y-2 transition-all hover:bg-white/5 dark:hover:bg-slate-800/50 hover:border-white/20"
             >
@@ -56,7 +67,7 @@ const { categories } = await useProductCategory();
                 class="w-full aspect-square sm:aspect-auto bg-gray-100 rounded-xl overflow-hidden"
               >
                 <img
-                  :src="product.product_media[0]?.url"
+                  :src="product.media[0]?.url"
                   :alt="product.name"
                   class="w-full h-full object-cover group-hover/product:scale-105 transition-transform duration-300"
                 />

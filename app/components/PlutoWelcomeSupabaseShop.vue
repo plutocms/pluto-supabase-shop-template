@@ -3,7 +3,7 @@ useHead({
   title: "Welcome to Pluto Shop",
 });
 
-const { data, error } = useFetch("/api/settings/first_setup");
+const { data, error } = useFetch("/api/_pluto/supabase/setup");
 
 const isFirstSetup = computed(
   () =>
