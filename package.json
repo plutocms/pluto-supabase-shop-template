@@ -7,7 +7,6 @@
     "@plutocms/pluto",
     "@plutocms/supabase",
     "@plutocms/supabase-shop",
-    "@plutocms/ui",
     "@plutocms/utils",
     "esbuild",
     "supabase",
