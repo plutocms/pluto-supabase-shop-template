@@ -18,11 +18,11 @@ const isFirstSetup = computed(
     <!-- Background glow effects -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div
-        class="absolute -top-40 -left-40 w-96 h-96 dark:bg-primary-500/20 light:bg-primary-300/20 rounded-full blur-3xl"
+        class="absolute -top-40 -left-40 size-96 dark:bg-primary-500/20 light:bg-primary-300/20 rounded-full blur-3xl"
       />
 
       <div
-        class="absolute -bottom-40 -right-40 w-96 h-96 dark:bg-primary-700/20 light:bg-primary-500/20 rounded-full blur-3xl"
+        class="absolute -bottom-40 -right-40 size-96 dark:bg-primary-700/20 light:bg-primary-500/20 rounded-full blur-3xl"
       />
     </div>
 
@@ -43,13 +43,13 @@ const isFirstSetup = computed(
       <!-- Heading -->
       <div class="flex flex-col gap-4">
         <h1
-          class="text-5xl sm:text-6xl font-extrabold font-outfit tracking-tight bg-linear-to-br dark:from-white dark:via-gray-200 dark:to-gray-400 light:from-black light:via-gray-800 light:to-gray-600 bg-clip-text text-transparent leading-tight"
+          class="text-5xl/tight sm:text-6xl font-extrabold font-outfit tracking-tight bg-linear-to-br dark:from-white dark:via-gray-200 dark:to-gray-400 light:from-black light:via-gray-800 light:to-gray-600 bg-clip-text text-transparent"
         >
           Welcome to Pluto
         </h1>
 
         <p
-          class="text-lg dark:text-gray-400 light:text-gray-600 font-outfit max-w-xl mx-auto leading-relaxed"
+          class="text-lg/relaxed dark:text-gray-400 light:text-gray-600 font-outfit max-w-xl mx-auto"
         >
           This is a starter template for building a storefront with Pluto
           and Supabase. Customize it to fit your brand and launch your online
@@ -102,7 +102,7 @@ const isFirstSetup = computed(
         <div
           class="dark:bg-white/5 light:bg-black/5 dark:border-white/10 light:border-black/10 font-outfit rounded-2xl p-5 flex flex-col gap-2 hover:dark:bg-white/10 hover:light:bg-black/10 transition-colors"
         >
-          <UIcon name="i-heroicons-bolt" class="text-primary-400 w-6 h-6" />
+          <UIcon name="i-heroicons-bolt" class="text-primary-400 size-6" />
 
           <h3 class="font-semibold dark:text-white light:text-black">
             Real Fast
@@ -119,7 +119,7 @@ const isFirstSetup = computed(
         >
           <UIcon
             name="i-heroicons-circle-stack"
-            class="text-primary-400 w-6 h-6"
+            class="text-primary-400 size-6"
           />
 
           <h3 class="font-semibold dark:text-white light:text-black">
@@ -137,7 +137,7 @@ const isFirstSetup = computed(
         >
           <UIcon
             name="i-heroicons-paint-brush"
-            class="text-primary-400 w-6 h-6"
+            class="text-primary-400 size-6"
           />
 
           <h3 class="font-semibold dark:text-white light:text-black">

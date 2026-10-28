@@ -41,7 +41,7 @@ const { visible: adminBarVisible } = usePlutoAdminBar();
       <div class="flex items-center gap-3">
         <button
           type="button"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-200 text-sm font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-200"
+          class="inline-flex size-9 items-center justify-center rounded-full bg-slate-200 text-sm font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-200"
         >
           J
         </button>
