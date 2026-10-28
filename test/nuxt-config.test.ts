@@ -37,8 +37,6 @@ describe("supabase-shop layer resolution", () => {
 
     const { default: config } = await import("../nuxt.config");
 
-    expect(config.extends).toEqual([
-      ["../supabase-shop", { install: true }],
-    ]);
+    expect(config.extends).toEqual([["../supabase-shop", { install: true }]]);
   });
 });

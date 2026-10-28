@@ -69,12 +69,12 @@ const categories = computed(() => categoryList.value?.data ?? []);
                 <img
                   :src="product.media[0]?.url"
                   :alt="product.name"
-                  class="w-full h-full object-cover group-hover/product:scale-105 transition-transform duration-300"
+                  class="size-full object-cover group-hover/product:scale-105 transition-transform duration-300"
                 />
               </div>
 
               <h3
-                class="text-sm sm:text-base font-semibold leading-tight group-hover/product:text-primary"
+                class="text-sm/tight sm:text-base font-semibold group-hover/product:text-primary"
               >
                 {{ product.name }}
               </h3>
