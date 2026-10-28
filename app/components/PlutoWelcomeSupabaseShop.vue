@@ -51,9 +51,8 @@ const isFirstSetup = computed(
         <p
           class="text-lg/relaxed dark:text-gray-400 light:text-gray-600 font-outfit max-w-xl mx-auto"
         >
-          This is a starter template for building a storefront with Pluto
-          and Supabase. Customize it to fit your brand and launch your online
-          store!
+          This is a starter template for building a storefront with Pluto and
+          Supabase. Customize it to fit your brand and launch your online store!
         </p>
       </div>
 

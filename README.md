@@ -32,9 +32,9 @@ three imports at the start of `app/assets/css/tailwind.css`, and add your own th
 them:
 
 ```css
-@import 'tailwindcss';
-@import '@nuxt/ui';
-@import '#build/pluto.css';
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "#build/pluto.css";
 ```
 
 `#build/pluto.css` brings in the CSS of every Pluto layer, including the admin theme. The

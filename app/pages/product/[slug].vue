@@ -12,7 +12,9 @@ const product = computed(() => data.value?.data);
 
 useHead({
   title: () =>
-    error.value ? "Product not found" : String(product.value?.name || "Product"),
+    error.value
+      ? "Product not found"
+      : String(product.value?.name || "Product"),
 });
 </script>
 
