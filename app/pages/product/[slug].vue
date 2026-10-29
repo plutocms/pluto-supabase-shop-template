@@ -58,10 +58,13 @@ usePlutoEditLink("product", () => product.value?.id);
         <div
           class="bg-elevated ring-default relative aspect-square overflow-hidden rounded-xl ring"
         >
-          <img
+          <PlutoImage
             v-if="image"
-            :src="image.url"
+            :media="image"
             :alt="image.alt || product.name"
+            sizes="xs:100vw md:50vw lg:600px"
+            loading="eager"
+            fetchpriority="high"
             class="size-full object-cover"
           />
           <UIcon
@@ -86,9 +89,10 @@ usePlutoEditLink("product", () => product.value?.id);
             class="aspect-square overflow-hidden rounded-lg transition-shadow"
             @click="selected = index"
           >
-            <img
-              :src="file.url"
-              :alt="file.alt || ''"
+            <PlutoImage
+              :media="file"
+              alt=""
+              sizes="xs:20vw md:120px"
               class="size-full object-cover"
             />
           </button>
