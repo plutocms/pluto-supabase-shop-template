@@ -1,5 +1,4 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
-/* Every Pluto layer's CSS: the admin theme and layer tokens. Add this app's
-   own @theme after these lines. */
 @import "#build/pluto.css";
+@import "#build/pluto-site.css";

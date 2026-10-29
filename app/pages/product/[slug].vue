@@ -1,69 +1,145 @@
 <script setup lang="ts">
-import { formatProductPrice } from "#imports";
-
 const route = useRoute();
+const slug = computed(() => String(route.params.slug));
+const { t } = usePlutoSiteI18n();
 
-// One product from the public API of Pluto, by slug.
 const { data, error } = await usePlutoPublicItem<PublicProduct>(
   "product",
-  String(route.params.slug),
+  slug,
 );
 const product = computed(() => data.value?.data);
 
-useHead({
-  title: () =>
-    error.value
-      ? "Product not found"
-      : String(product.value?.name || "Product"),
+if (error.value) {
+  throw createError({ statusCode: 404, statusMessage: "Product not found" });
+}
+
+const images = computed(() =>
+  product.value ? productImages(product.value) : [],
+);
+const selected = ref(0);
+const image = computed(() => images.value[selected.value] ?? images.value[0]);
+
+const stock = computed(() => {
+  const item = product.value;
+  if (!item) {
+    return "";
+  }
+  if (item.is_custom) {
+    return t("site.product.madeToOrder");
+  }
+  return isSoldOut(item)
+    ? t("site.product.soldOut")
+    : t("site.product.inStock", { count: item.stock_quantity });
 });
+
+useSeoMeta({
+  title: () => product.value?.name,
+  description: () => product.value?.description ?? undefined,
+  ogTitle: () => product.value?.name,
+  ogDescription: () => product.value?.description ?? undefined,
+  ogImage: () => images.value[0]?.url,
+});
+
+usePlutoEditLink("product", () => product.value?.id);
 </script>
 
 <template>
-  <NotFoundProduct v-if="error" />
+  <UContainer v-if="product" class="py-10 sm:py-16">
+    <ULink
+      to="/"
+      class="text-muted hover:text-primary mb-8 inline-flex items-center gap-1.5 text-sm"
+    >
+      <UIcon name="i-lucide-arrow-left" class="size-4" />
+      {{ t("site.product.back") }}
+    </ULink>
 
-  <UContainer v-else class="min-h-screen py-12 bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col md:flex-row gap-10">
-      <div>
-        <img
-          :src="product?.media[0]?.url"
-          :alt="product?.name"
-          class="w-full max-w-md h-auto object-cover rounded-lg border border-gray-200 dark:border-gray-700 shadow"
-        />
+    <div class="grid gap-10 md:grid-cols-2 lg:gap-16">
+      <div class="flex flex-col gap-3">
+        <div
+          class="bg-elevated ring-default relative aspect-square overflow-hidden rounded-xl ring"
+        >
+          <img
+            v-if="image"
+            :src="image.url"
+            :alt="image.alt || product.name"
+            class="size-full object-cover"
+          />
+          <UIcon
+            v-else
+            name="i-lucide-image"
+            class="text-dimmed absolute inset-0 m-auto size-12"
+          />
+        </div>
+
+        <div v-if="images.length > 1" class="grid grid-cols-5 gap-3">
+          <button
+            v-for="(file, index) in images"
+            :key="file.id"
+            :aria-label="t('site.product.showImage', { number: index + 1 })"
+            :aria-current="index === selected"
+            :class="
+              index === selected
+                ? 'ring-primary ring-2'
+                : 'ring-default hover:ring-accented ring'
+            "
+            type="button"
+            class="aspect-square overflow-hidden rounded-lg transition-shadow"
+            @click="selected = index"
+          >
+            <img
+              :src="file.url"
+              :alt="file.alt || ''"
+              class="size-full object-cover"
+            />
+          </button>
+        </div>
       </div>
 
-      <div class="p-4 h-fit">
-        <div class="flex flex-col gap-4 justify-center">
-          <div class="flex items-center gap-x-2">
-            <UBadge color="primary" size="lg">
-              {{ product?.category?.label }}
-            </UBadge>
-
-            <UBadge color="primary" size="lg">
-              {{ product?.availability?.label }}
-            </UBadge>
-          </div>
-
-          <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100">
-            {{ product?.name }}
-          </h1>
-
-          <p class="text-lg text-gray-700 dark:text-gray-300">
-            {{ product?.description }}
-          </p>
-
-          <div class="text-3xl font-bold">
-            {{ formatProductPrice(product?.price) }}
-          </div>
-
-          <UButton
-            icon="hugeicons:shopping-cart-02"
-            color="primary"
-            size="xl"
-            class="w-fit"
+      <div class="flex flex-col gap-5">
+        <div class="flex flex-wrap items-center gap-2">
+          <NuxtLink
+            v-if="product.category"
+            :to="{ path: '/', query: { category: product.category.slug } }"
           >
-            Checkout (not implemented)
-          </UButton>
+            <UBadge
+              :label="product.category.label"
+              color="primary"
+              variant="subtle"
+              class="hover:bg-primary/20 transition-colors"
+            />
+          </NuxtLink>
+          <UBadge
+            v-if="product.availability"
+            :label="product.availability.label"
+            color="neutral"
+            variant="subtle"
+          />
         </div>
+
+        <h1
+          class="text-highlighted text-4xl font-semibold text-balance sm:text-5xl"
+        >
+          {{ product.name }}
+        </h1>
+
+        <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <p class="text-highlighted text-3xl font-semibold">
+            {{ formatProductPrice(product.price) }}
+          </p>
+          <p
+            :class="isSoldOut(product) ? 'text-muted' : 'text-success'"
+            class="text-sm font-medium"
+          >
+            {{ stock }}
+          </p>
+        </div>
+
+        <p
+          v-if="product.description"
+          class="text-toned text-lg whitespace-pre-line text-pretty"
+        >
+          {{ product.description }}
+        </p>
       </div>
     </div>
   </UContainer>
