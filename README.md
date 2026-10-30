@@ -1,44 +1,55 @@
-# Pluto Supabase Shop Template
+# Pluto Shop Template
 
-> [!WARNING]
-> This is a work in progress. Expect breaking changes until stable version.
+A product catalog on [Pluto](https://pluto.vulmix.dev) and Supabase. The admin manages the
+products, their photos, the categories and the stock. The template extends
+[`@plutocms/supabase-shop`](https://github.com/plutocms/supabase-shop), which brings
+`@plutocms/supabase` and `@plutocms/pluto`.
 
-This is a simple e-commerce template built with Nuxt 4 + Pluto. It provides a basic structure for an online store, including product listing and categories. The admin manages products and product media.
-
-The app extends only `@plutocms/supabase-shop`, as `[['@plutocms/supabase-shop', { install: true }]]`. That layer brings `@plutocms/supabase` and `@plutocms/pluto`, so the `package.json` does not list them.
-
-## Setup
-
-Make sure to install dependencies:
+## Create a shop
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm create pluto@latest my-shop -t supabase-shop
 ```
 
-## Styling
+The CLI writes the `.env` with your Supabase project.
 
-This app owns the only Tailwind build. Pluto layers do not register their own. Keep these
-three imports at the start of `app/assets/css/tailwind.css`, and add your own theme after
-them:
+## Run it
 
-```css
-@import "tailwindcss";
-@import "@nuxt/ui";
-@import "#build/pluto.css";
+```bash
+npm run dev
 ```
 
-`#build/pluto.css` brings in the CSS of every Pluto layer, including the admin theme. The
-admin keeps its own palette, so your site theme does not change it.
+Then open `/admin` on the dev server. The first visit opens the setup wizard of the Supabase
+layer. `npm run supabase-types` writes the database types.
+
+## Make it yours
+
+The site is small on purpose. Every file is a starting point:
+
+| File                             | What it does                                                                                                                                                   |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `app/app.config.ts`              | The colors (`primary`, `secondary`, `neutral`). Pluto's palette is the default.                                                                                |
+| `app/assets/css/tailwind.css`    | The CSS entry. `#build/pluto-site.css` adds the Pluto look: the fonts, the dark mode and the `pluto-sky` background. Remove that line for a theme of your own. |
+| `app/layouts/default.vue`        | The header (your logo and the site name) and the footer.                                                                                                       |
+| `app/pages/index.vue`            | The store: the products, with search, categories and pages.                                                                                                    |
+| `app/pages/product/[slug].vue`   | One product: the photos, the price, the stock and the description.                                                                                             |
+| `app/components/ProductCard.vue` | A product in the grid.                                                                                                                                         |
+| `i18n/locales/*.json`            | The texts of the site (`site.*`), one file per language.                                                                                                       |
+
+The site name comes from `websiteName` in `nuxt.config.ts` (or `NUXT_PUBLIC_WEBSITE_NAME`).
+
+Prices are stored in cents. `formatProductPrice(cents)` shows them in BRL. For another currency,
+pass it: `formatProductPrice(cents, { currency: 'USD' })`.
+
+The template has no cart and no checkout. Add them in your app, for example with a payment
+provider's hosted checkout on the product page.
+
+### Languages
+
+The site has its own language, separate from the admin language. The language switch in the
+header shows when there is more than one file in `i18n/locales/`. Use `usePlutoSiteI18n()` in a
+page: `t('site.…')` for text and `d(date, options)` for dates. `plutoI18n.siteLocale` in
+`nuxt.config.ts` sets the language before a visitor picks one.
 
 ## Team and email (optional)
 
@@ -60,70 +71,14 @@ NUXT_PLUTO_MAIL_RESEND_API_KEY=
 NUXT_PLUTO_MAIL_FROM="Your Shop <hello@your-domain.com>"
 ```
 
-## Develop with local layers
+## Go live
 
-To test unpublished changes, clone the Pluto layers side by side in one folder. Then set the
-folder in `.env`:
+Push the project to a GitHub repository and deploy it (for example to Vercel). Set the values of
+your `.env` (`SUPABASE_URL`, `SUPABASE_KEY`, `DATABASE_URL`) in the settings of your host.
 
-```bash
-# The folder with your checkouts of the Pluto layers (utils, ui, pluto, ...).
-PLUTO_LOCAL_ROOT=..
-```
+**Docs:** [Supabase](https://pluto.vulmix.dev/supabase) ·
+[Shop layer](https://pluto.vulmix.dev/layers/shop)
 
-The `plutoLayer` helper in `nuxt.config.ts` then uses a local checkout of every layer it finds
-in that folder. It uses the npm packages for the other layers. Set `PLUTO_USE_LOCAL=false` to
-turn local mode off. A production host has no `.env`, so it uses the npm packages.
+## License
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+MIT
