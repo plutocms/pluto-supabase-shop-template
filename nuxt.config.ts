@@ -1,7 +1,7 @@
 import { plutoLayer } from "@plutocms/core/layers";
 
 export default defineNuxtConfig({
-  extends: [plutoLayer("@plutocms/supabase-shop")],
+  extends: [plutoLayer("@plutocms/supabase-shop"), plutoLayer("@plutocms/3d")],
 
   compatibilityDate: "2025-07-15",
 

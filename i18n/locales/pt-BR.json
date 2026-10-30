@@ -21,7 +21,8 @@
       "madeToOrder": "Sob encomenda",
       "soldOut": "Esgotado",
       "inStock": "{count} em estoque",
-      "showImage": "Mostrar a imagem {number}"
+      "showImage": "Mostrar a imagem {number}",
+      "showModel": "Mostrar o modelo 3D"
     },
     "footer": {
       "builtWith": "Feito com Pluto"
