@@ -16,8 +16,16 @@ if (error.value) {
 const images = computed(() =>
   product.value ? productImages(product.value) : [],
 );
+// The gallery: the images, then the 3D models. A model shows in the viewer of @plutocms/3d.
+const gallery = computed(() =>
+  product.value ? [...images.value, ...productModels(product.value)] : [],
+);
 const selected = ref(0);
-const image = computed(() => images.value[selected.value] ?? images.value[0]);
+const current = computed(
+  () => gallery.value[selected.value] ?? gallery.value[0],
+);
+const isModel = (file: PlutoPublicMedia | undefined) =>
+  file?.mimeType === "model/gltf-binary";
 
 const stock = computed(() => {
   const item = product.value;
@@ -58,10 +66,18 @@ usePlutoEditLink("product", () => product.value?.id);
         <div
           class="bg-elevated ring-default relative aspect-square overflow-hidden rounded-xl ring"
         >
+          <Pluto3dViewer
+            v-if="isModel(current)"
+            :key="current!.id"
+            :media="current"
+            :alt="current!.alt || product.name"
+            auto-rotate
+            class="size-full"
+          />
           <PlutoImage
-            v-if="image"
-            :media="image"
-            :alt="image.alt || product.name"
+            v-else-if="current"
+            :media="current"
+            :alt="current.alt || product.name"
             sizes="xs:100vw md:50vw lg:600px"
             loading="eager"
             fetchpriority="high"
@@ -74,11 +90,15 @@ usePlutoEditLink("product", () => product.value?.id);
           />
         </div>
 
-        <div v-if="images.length > 1" class="grid grid-cols-5 gap-3">
+        <div v-if="gallery.length > 1" class="grid grid-cols-5 gap-3">
           <button
-            v-for="(file, index) in images"
+            v-for="(file, index) in gallery"
             :key="file.id"
-            :aria-label="t('site.product.showImage', { number: index + 1 })"
+            :aria-label="
+              isModel(file)
+                ? t('site.product.showModel')
+                : t('site.product.showImage', { number: index + 1 })
+            "
             :aria-current="index === selected"
             :class="
               index === selected
@@ -86,14 +106,28 @@ usePlutoEditLink("product", () => product.value?.id);
                 : 'ring-default hover:ring-accented ring'
             "
             type="button"
-            class="aspect-square overflow-hidden rounded-lg transition-shadow"
+            class="bg-elevated relative aspect-square overflow-hidden rounded-lg transition-shadow"
             @click="selected = index"
           >
             <PlutoImage
+              v-if="!isModel(file) || file.preview"
               :media="file"
               alt=""
               sizes="xs:20vw md:120px"
               class="size-full object-cover"
+            />
+            <UIcon
+              v-else
+              name="i-lucide-box"
+              class="text-dimmed absolute inset-0 m-auto size-6"
+            />
+            <UBadge
+              v-if="isModel(file)"
+              label="3D"
+              color="neutral"
+              variant="solid"
+              size="sm"
+              class="absolute right-1 bottom-1"
             />
           </button>
         </div>
