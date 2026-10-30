@@ -3,7 +3,7 @@
 A product catalog on [Pluto](https://pluto.vulmix.dev) and Supabase. The admin manages the
 products, their photos, the categories and the stock. The template extends
 [`@plutocms/supabase-shop`](https://github.com/plutocms/supabase-shop), which brings
-`@plutocms/supabase` and `@plutocms/pluto`.
+`@plutocms/supabase` and `@plutocms/core`.
 
 ## Create a shop
 

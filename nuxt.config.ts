@@ -1,4 +1,4 @@
-import { plutoLayer } from "@plutocms/pluto/layers";
+import { plutoLayer } from "@plutocms/core/layers";
 
 export default defineNuxtConfig({
   extends: [plutoLayer("@plutocms/supabase-shop")],

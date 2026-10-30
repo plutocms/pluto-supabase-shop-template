@@ -4,7 +4,7 @@
   "private": true,
   "trustedDependencies": [
     "@parcel/watcher",
-    "@plutocms/pluto",
+    "@plutocms/core",
     "@plutocms/supabase",
     "@plutocms/supabase-shop",
     "@plutocms/utils",
@@ -21,7 +21,7 @@
     "supabase-types": "bun node_modules/@plutocms/supabase/scripts/supabase-typegen.ts"
   },
   "dependencies": {
-    "@plutocms/pluto": "^0.38.0",
+    "@plutocms/core": "^0.38.0",
     "@plutocms/supabase-shop": "^0.17.0",
     "nuxt": "^4.6.3",
     "vue": "^3.5.41",
