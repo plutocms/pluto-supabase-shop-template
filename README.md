@@ -29,7 +29,7 @@ The site is small on purpose. Every file is a starting point:
 | File                             | What it does                                                                                                                                                   |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `app/app.config.ts`              | The colors (`primary`, `secondary`, `neutral`). Pluto's palette is the default.                                                                                |
-| `app/assets/css/tailwind.css`    | The CSS entry. `#build/pluto-site.css` adds the Pluto look: the fonts, the dark mode and the `pluto-sky` background. Remove that line for a theme of your own. |
+| `app/assets/css/tailwind.css`    | The CSS entry. `@plutocms/css/site` adds the Pluto look: the fonts, the dark mode and the `pluto-sky` background. Remove that line for a theme of your own. |
 | `app/layouts/default.vue`        | The header (your logo and the site name) and the footer.                                                                                                       |
 | `app/pages/index.vue`            | The store: the products, with search, categories and pages.                                                                                                    |
 | `app/pages/product/[slug].vue`   | One product: the photos, the price, the stock and the description.                                                                                             |
