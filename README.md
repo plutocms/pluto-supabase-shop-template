@@ -5,6 +5,13 @@ products, their photos, the categories and the stock. The template extends
 [`@plutocms/supabase-shop`](https://github.com/plutocms/supabase-shop), which brings
 `@plutocms/supabase` and `@plutocms/core`.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fplutocms%2Fpluto-supabase-shop-template&project-name=my-shop&repository-name=my-shop&env=SUPABASE_URL,SUPABASE_KEY,DATABASE_URL&envDescription=The%20values%20of%20your%20Supabase%20project&envLink=https%3A%2F%2Fpluto.vulmix.dev%2Fdocs%2Fsupabase)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/plutocms/pluto-supabase-shop-template)
+
+A button copies this template to a new repository in your GitHub account and deploys it. The host
+asks for the values of your Supabase project (`SUPABASE_URL`, `SUPABASE_KEY`, `DATABASE_URL`).
+Then open `/admin` on the new site: the setup wizard of the Supabase layer runs.
+
 ## Create a shop
 
 ```bash
