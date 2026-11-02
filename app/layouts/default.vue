@@ -7,13 +7,17 @@ useHead({
     title && title !== siteName ? `${title} - ${siteName}` : siteName,
 });
 
+// PlutoRoot moves the page down under the admin bar while it shows. The
+// layout is then one screen less the bar, so a short page does not scroll.
 const { visible: offset } = usePlutoAdminBar();
 </script>
 
 <template>
   <div
-    :class="offset ? 'pt-(--pluto-admin-bar-height)' : ''"
-    class="bg-default text-default flex min-h-dvh flex-col"
+    :class="
+      offset ? 'min-h-[calc(100dvh-var(--pluto-admin-bar-height))]' : 'min-h-dvh'
+    "
+    class="bg-default text-default flex flex-col"
   >
     <header
       class="pluto-site-header border-default bg-default/75 sticky top-0 z-40 border-b backdrop-blur"
