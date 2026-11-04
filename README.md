@@ -1,5 +1,10 @@
 # Pluto Shop Template
 
+> [!IMPORTANT]
+> This repository is archived. The template moved to
+> [`plutocms/templates`](https://github.com/plutocms/templates/tree/main/templates/supabase-shop), where it
+> gets the updates. Start a new site with `npm create pluto@latest my-site -t supabase-shop`.
+
 A product catalog on [Pluto](https://pluto.vulmix.dev) and Supabase. The admin manages the
 products, their photos, the categories and the stock. The template extends
 [`@plutocms/supabase-shop`](https://github.com/plutocms/supabase-shop), which brings
